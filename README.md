@@ -1,5 +1,3 @@
-# replit.md
-
 ## Overview
 
 This is a personal portfolio website for Hemant Kumar Jha, a software developer student. The website showcases skills, projects, and provides contact information through a modern, responsive single-page application. The site features a clean, professional design with dark/light theme toggle functionality and interactive animations to create an engaging user experience.
