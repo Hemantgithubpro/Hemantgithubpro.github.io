@@ -11,6 +11,145 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeContactForm();
     initializeStatsAnimation();
     initializeSmoothScrolling();
+    initializePWA();
+});
+
+// PWA functionality
+function initializePWA() {
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js')
+                .then((registration) => {
+                    console.log('ServiceWorker registration successful: ', registration.scope);
+                    
+                    // Check for updates
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                // New content is available
+                                showUpdateNotification();
+                            }
+                        });
+                    });
+                })
+                .catch((error) => {
+                    console.log('ServiceWorker registration failed: ', error);
+                });
+        });
+    }
+
+    // Handle install prompt
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        showInstallButton();
+    });
+
+    // Handle app installed
+    window.addEventListener('appinstalled', (evt) => {
+        console.log('App installed');
+        hideInstallButton();
+    });
+
+    // Check if app is running standalone
+    if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+        document.body.classList.add('pwa-standalone');
+    }
+}
+
+function showUpdateNotification() {
+    const notification = document.createElement('div');
+    notification.className = 'update-notification';
+    notification.innerHTML = `
+        <div class="update-content">
+            <span>New version available!</span>
+            <button onclick="location.reload()" class="btn btn-primary btn-sm">Update</button>
+            <button onclick="this.parentElement.parentElement.remove()" class="btn btn-secondary btn-sm">Later</button>
+        </div>
+    `;
+    document.body.appendChild(notification);
+}
+
+function showInstallButton() {
+    const installButton = document.createElement('div');
+    installButton.id = 'install-button';
+    installButton.className = 'install-prompt';
+    installButton.innerHTML = `
+        <div class="install-content">
+            <span>Install this app for a better experience!</span>
+            <button id="install-btn" class="btn btn-primary btn-sm">Install</button>
+            <button onclick="this.parentElement.parentElement.remove()" class="btn btn-secondary btn-sm">×</button>
+        </div>
+    `;
+    
+    document.body.appendChild(installButton);
+    
+    document.getElementById('install-btn').addEventListener('click', () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                }
+                deferredPrompt = null;
+                hideInstallButton();
+            });
+        }
+    });
+}
+
+function hideInstallButton() {
+    const installButton = document.getElementById('install-button');
+    if (installButton) {
+        installButton.remove();
+    }
+}
+
+// Network status monitoring
+function initializeNetworkMonitoring() {
+    let offlineIndicator = null;
+    
+    function showOfflineIndicator() {
+        if (!offlineIndicator) {
+            offlineIndicator = document.createElement('div');
+            offlineIndicator.className = 'offline-indicator';
+            offlineIndicator.textContent = 'You are offline';
+            document.body.appendChild(offlineIndicator);
+        }
+    }
+    
+    function hideOfflineIndicator() {
+        if (offlineIndicator) {
+            offlineIndicator.remove();
+            offlineIndicator = null;
+        }
+    }
+    
+    window.addEventListener('online', () => {
+        hideOfflineIndicator();
+        
+        // Try to sync offline form data
+        const pendingForm = localStorage.getItem('pendingContactForm');
+        if (pendingForm) {
+            console.log('Back online - syncing form data');
+            // In a real app, you'd submit the form here
+        }
+    });
+    
+    window.addEventListener('offline', showOfflineIndicator);
+    
+    // Initial check
+    if (!navigator.onLine) {
+        showOfflineIndicator();
+    }
+}
+
+// Initialize network monitoring
+document.addEventListener('DOMContentLoaded', function() {
+    initializeNetworkMonitoring();
 });
 
 // Navigation functionality
@@ -20,7 +159,7 @@ function initializeNavigation() {
     const navLinks = document.querySelectorAll('.nav-link');
 
     // Hamburger menu toggle
-    hamburger.addEventListener('click', function() {
+    function toggleMenu() {
         navMenu.classList.toggle('active');
         
         // Animate hamburger bars
@@ -35,6 +174,15 @@ function initializeNavigation() {
                 bar.style.opacity = '1';
             }
         });
+    }
+    
+    // Add both click and keyboard support
+    hamburger.addEventListener('click', toggleMenu);
+    hamburger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleMenu();
+        }
     });
 
     // Close mobile menu when clicking on a link
@@ -48,6 +196,29 @@ function initializeNavigation() {
             });
         });
     });
+    
+    // Touch gesture support for mobile menu
+    let startY = 0;
+    let currentY = 0;
+    
+    navMenu.addEventListener('touchstart', (e) => {
+        startY = e.touches[0].clientY;
+    }, { passive: true });
+    
+    navMenu.addEventListener('touchmove', (e) => {
+        currentY = e.touches[0].clientY;
+        const diffY = startY - currentY;
+        
+        // If swiping up significantly, close menu
+        if (diffY > 50 && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            const bars = hamburger.querySelectorAll('.bar');
+            bars.forEach(bar => {
+                bar.style.transform = 'none';
+                bar.style.opacity = '1';
+            });
+        }
+    }, { passive: true });
 
     // Highlight active navigation link
     window.addEventListener('scroll', updateActiveNavLink);
@@ -253,21 +424,67 @@ function initializeContactForm() {
         }
     });
 
-    // Form submission
+    // Form submission with offline support
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         
         const submitBtn = form.querySelector('button[type="submit"]');
+        const formStatus = document.getElementById('form-status');
         const originalText = submitBtn.innerHTML;
+        
+        // Get form data
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            subject: document.getElementById('subject').value,
+            message: document.getElementById('message').value,
+            timestamp: new Date().toISOString()
+        };
         
         // Show loading state
         submitBtn.innerHTML = '<span>Sending...</span><i class="fas fa-spinner fa-spin"></i>';
         submitBtn.disabled = true;
         
-        // Simulate form submission
-        setTimeout(() => {
-            submitBtn.innerHTML = '<span>Message Sent!</span><i class="fas fa-check"></i>';
-            submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+        // Check if online
+        if (navigator.onLine) {
+            // Simulate form submission (replace with actual submission)
+            setTimeout(() => {
+                submitBtn.innerHTML = '<span>Message Sent!</span><i class="fas fa-check"></i>';
+                submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                
+                formStatus.className = 'form-status success';
+                formStatus.textContent = 'Message sent successfully!';
+                
+                // Reset form
+                setTimeout(() => {
+                    form.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.background = '';
+                    formStatus.style.display = 'none';
+                    
+                    // Remove focused class from form groups
+                    inputs.forEach(input => {
+                        input.parentElement.classList.remove('focused');
+                    });
+                }, 2000);
+            }, 1500);
+        } else {
+            // Store for offline submission
+            localStorage.setItem('pendingContactForm', JSON.stringify(formData));
+            
+            // Request background sync if available
+            if ('serviceWorker' in navigator && 'sync' in window.ServiceWorkerRegistration.prototype) {
+                navigator.serviceWorker.ready.then((registration) => {
+                    return registration.sync.register('contact-form-sync');
+                });
+            }
+            
+            submitBtn.innerHTML = '<span>Saved Offline</span><i class="fas fa-wifi"></i>';
+            submitBtn.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
+            
+            formStatus.className = 'form-status success';
+            formStatus.textContent = 'Message saved offline. Will send when connection is restored.';
             
             // Reset form
             setTimeout(() => {
@@ -275,13 +492,13 @@ function initializeContactForm() {
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
                 submitBtn.style.background = '';
+                formStatus.style.display = 'none';
                 
-                // Remove focused class from form groups
                 inputs.forEach(input => {
                     input.parentElement.classList.remove('focused');
                 });
-            }, 2000);
-        }, 1500);
+            }, 3000);
+        }
     });
 
     // Real-time validation
@@ -379,8 +596,22 @@ function debounce(func, wait) {
     };
 }
 
-// Add smooth scroll behavior for better performance
-window.addEventListener('scroll', debounce(updateActiveNavLink, 10));
+// Throttle function for better scroll performance
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    }
+}
+
+// Improved scroll performance with throttling
+window.addEventListener('scroll', throttle(updateActiveNavLink, 50), { passive: true });
 
 // Add loading animation
 window.addEventListener('load', function() {
@@ -415,64 +646,110 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Add parallax effect to hero section
-window.addEventListener('scroll', function() {
-    const scrolled = window.pageYOffset;
-    const heroImage = document.querySelector('.hero-image');
-    
-    if (heroImage) {
-        const speed = scrolled * 0.5;
-        heroImage.style.transform = `translateY(${speed}px)`;
-    }
-});
+// Optimized parallax effect with performance checks
+const heroImage = document.querySelector('.hero-image');
+let ticking = false;
 
-// Add dynamic particles background (optional enhancement)
+function updateParallax() {
+    if (heroImage && window.innerWidth > 768) {
+        const scrolled = window.pageYOffset;
+        const speed = scrolled * 0.3; // Reduced intensity for better performance
+        heroImage.style.transform = `translate3d(0, ${speed}px, 0)`; // Use translate3d for hardware acceleration
+    }
+    ticking = false;
+}
+
+function requestParallaxUpdate() {
+    if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+    }
+}
+
+// Only add parallax on larger screens and when user hasn't requested reduced motion
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.innerWidth > 768) {
+    window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+}
+
+// Optimized particle system with performance controls
+let particlesEnabled = window.innerWidth > 768; // Disable on mobile
+let particleCount = 0;
+const maxParticles = 5;
+
 function createParticle() {
-    const particle = document.createElement('div');
-    particle.style.position = 'fixed';
-    particle.style.width = '4px';
-    particle.style.height = '4px';
-    particle.style.background = 'rgba(99, 102, 241, 0.3)';
-    particle.style.borderRadius = '50%';
-    particle.style.pointerEvents = 'none';
-    particle.style.animation = 'float 6s linear infinite';
-    particle.style.zIndex = '-1';
+    // Performance check - limit particles and disable on low-end devices
+    if (!particlesEnabled || particleCount >= maxParticles || document.hidden) return;
     
-    // Random starting position
+    const particle = document.createElement('div');
+    particle.className = 'floating-particle';
     particle.style.left = Math.random() * 100 + 'vw';
-    particle.style.top = '100vh';
     particle.style.animationDelay = Math.random() * 6 + 's';
     
     document.body.appendChild(particle);
+    particleCount++;
     
-    // Remove particle after animation
-    setTimeout(() => {
+    // Use animation events instead of setTimeout for better performance
+    particle.addEventListener('animationend', () => {
         if (particle.parentNode) {
             particle.parentNode.removeChild(particle);
         }
-    }, 6000);
+        particleCount--;
+    }, { once: true });
 }
 
-// Add floating particles effect
-setInterval(createParticle, 3000);
+// Reduce particle creation frequency for better performance
+let particleInterval;
+if (particlesEnabled) {
+    particleInterval = setInterval(createParticle, 5000);
+}
 
-// Add CSS for floating particles
+// Pause particles when page is not visible
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        clearInterval(particleInterval);
+    } else if (particlesEnabled) {
+        particleInterval = setInterval(createParticle, 5000);
+    }
+});
+
+// Add optimized CSS for floating particles
 const style = document.createElement('style');
 style.textContent = `
+    .floating-particle {
+        position: fixed;
+        width: 3px;
+        height: 3px;
+        background: rgba(99, 102, 241, 0.2);
+        border-radius: 50%;
+        pointer-events: none;
+        animation: float 8s linear infinite;
+        z-index: -1;
+        will-change: transform, opacity;
+        top: 100vh;
+    }
+    
     @keyframes float {
         0% {
             transform: translateY(0) rotate(0deg);
             opacity: 0;
         }
         10% {
-            opacity: 1;
+            opacity: 0.8;
         }
         90% {
-            opacity: 1;
+            opacity: 0.8;
         }
         100% {
-            transform: translateY(-100vh) rotate(360deg);
+            transform: translateY(-100vh) rotate(180deg);
             opacity: 0;
+        }
+    }
+    
+    /* Reduce motion for users who prefer it */
+    @media (prefers-reduced-motion: reduce) {
+        .floating-particle {
+            animation: none;
+            display: none;
         }
     }
 `;

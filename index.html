@@ -5,9 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hemant Kumar Jha - Software Developer Student</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Hemant Kumar Jha - Computer Science student and passionate software developer specializing in React, Node.js, and full-stack development. View my projects and get in touch!">
+    <meta name="keywords"
+        content="software developer, computer science student, React developer, Node.js, full-stack developer, web development, programming">
+    <meta name="author" content="Hemant Kumar Jha">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Hemant Kumar Jha - Software Developer Student">
+    <meta property="og:description"
+        content="Computer Science student and passionate software developer specializing in React, Node.js, and full-stack development.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.hemantjha.me">
+    <meta property="og:site_name" content="Hemant Kumar Jha Portfolio">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@hemant4x">
+    <meta name="twitter:title" content="Hemant Kumar Jha - Software Developer Student">
+    <meta name="twitter:description"
+        content="Computer Science student and passionate software developer specializing in React, Node.js, and full-stack development.">
+
+    <!-- Preload critical fonts to reduce render blocking -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
+
+    <!-- Preload Font Awesome with optimized loading -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
+
+    <!-- Critical CSS inline -->
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
+    <!-- Preconnect to critical origins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Favicon and theme -->
+    <link rel="icon" type="image/x-icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+    <meta name="theme-color" content="#6366f1">
+
+    <!-- iOS specific meta tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="HKJ Portfolio">
 </head>
 
 <body>
@@ -38,15 +96,15 @@
                     <a href="#contact" class="nav-link">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <button class="theme-toggle" id="theme-toggle">
-                        <i class="fas fa-moon"></i>
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light theme">
+                        <i class="fas fa-moon" aria-hidden="true"></i>
                     </button>
                 </li>
             </ul>
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu" role="button" tabindex="0">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
             </div>
         </div>
     </nav>
@@ -94,8 +152,8 @@
                 </div>
             </div>
         </div>
-        <div class="scroll-indicator">
-            <i class="fas fa-chevron-down"></i>
+        <div class="scroll-indicator" aria-label="Scroll down to see more content" role="button" tabindex="0">
+            <i class="fas fa-chevron-down" aria-hidden="true"></i>
         </div>
     </section>
 
@@ -702,27 +760,35 @@
                     </div>
                 </div>
                 <div class="contact-form-container">
-                    <form class="contact-form" id="contact-form">
+                    <form class="contact-form" id="contact-form" novalidate>
                         <div class="form-group">
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name" required aria-describedby="name-error"
+                                autocomplete="name">
                             <label for="name">Your Name</label>
+                            <div id="name-error" class="error-message" role="alert" aria-live="polite"></div>
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" required aria-describedby="email-error"
+                                autocomplete="email">
                             <label for="email">Your Email</label>
+                            <div id="email-error" class="error-message" role="alert" aria-live="polite"></div>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="subject" name="subject" required>
+                            <input type="text" id="subject" name="subject" required aria-describedby="subject-error">
                             <label for="subject">Subject</label>
+                            <div id="subject-error" class="error-message" role="alert" aria-live="polite"></div>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <textarea id="message" name="message" rows="5" required
+                                aria-describedby="message-error"></textarea>
                             <label for="message">Your Message</label>
+                            <div id="message-error" class="error-message" role="alert" aria-live="polite"></div>
                         </div>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" aria-describedby="form-status">
                             <span>Send Message</span>
-                            <i class="fas fa-paper-plane"></i>
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i>
                         </button>
+                        <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
                     </form>
                 </div>
             </div>
@@ -739,7 +805,32 @@
         </div>
     </footer> -->
 
-    <script src="script.js"></script>
+    <!-- Load JavaScript asynchronously for better performance -->
+    <script src="script.js" defer></script>
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Hemant Kumar Jha",
+        "jobTitle": "Software Developer Student",
+        "description": "Computer Science student and passionate software developer specializing in React, Node.js, and full-stack development",
+        "url": "https://www.hemantjha.me",
+        "sameAs": [
+            "https://github.com/hemantgithubpro/",
+            "https://www.linkedin.com/in/hemant-kumar-jha-79a922284/",
+            "https://x.com/hemant4x/",
+            "https://hkj.hashnode.dev/"
+        ],
+        "knowsAbout": ["JavaScript", "React", "Node.js", "Python", "C++", "MongoDB", "MySQL"],
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Delhi",
+            "addressCountry": "India"
+        }
+    }
+    </script>
 </body>
 
 </html>
