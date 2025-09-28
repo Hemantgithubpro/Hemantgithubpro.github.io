@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hemant Kumar Jha - Software Developer Student</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">HKJ</a>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#skills" class="nav-link">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#projects" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#profiles" class="nav-link">Profiles</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#achievements" class="nav-link">Achievements</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <button class="theme-toggle" id="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Hi, I'm <span class="highlight">Hemant Kumar Jha</span>
+                </h1>
+                <p class="hero-subtitle">
+                    A passionate <span class="typed-text" id="typed-text"></span>
+                </p>
+                <p class="hero-description">
+                    Computer Science student with a love for creating innovative solutions and learning new
+                    technologies. I build projects that solve real-world problems and constantly challenge myself to
+                    grow as a developer.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="code-animation">
+                    <div class="code-line">
+                        <span class="code-keyword">const</span>
+                        <span class="code-variable">developer</span> = {
+                    </div>
+                    <div class="code-line indent">
+                        <span class="code-property">name:</span>
+                        <span class="code-string">'Hemant Kumar Jha'</span>,
+                    </div>
+                    <div class="code-line indent">
+                        <span class="code-property">skills:</span> [
+                        <span class="code-string">'JavaScript'</span>,
+                        <span class="code-string">'Python'</span>],
+                    </div>
+                    <div class="code-line indent">
+                        <span class="code-property">passion:</span>
+                        <span class="code-string">'Problem Solving'</span>
+                    </div>
+                    <div class="code-line">};</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>My Journey Into Software Development</h3>
+                    <p>
+                        I'm currently pursuing a Computer Science degree and have fallen in love with the endless
+                        possibilities that programming offers. What started as curiosity about how websites work has
+                        evolved into a genuine passion for creating digital solutions.
+                    </p>
+                    <p>
+                        As a student developer, I've focused on building a strong foundation in programming fundamentals
+                        while working on practical projects that challenge me to apply what I learn. I believe in
+                        learning by doing, which is why each project in my portfolio represents a step forward in my
+                        development journey.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-number" data-target="15">0</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-target="8">0</span>
+                            <span class="stat-label">Technologies Learned</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-target="500">0</span>
+                            <span class="stat-label">Hours of Coding</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="about-card">
+                        <h4>What Drives Me</h4>
+                        <ul>
+                            <li><i class="fas fa-lightbulb"></i> Problem-solving challenges</li>
+                            <li><i class="fas fa-code"></i> Clean, efficient code</li>
+                            <li><i class="fas fa-users"></i> Collaborative learning</li>
+                            <li><i class="fas fa-rocket"></i> Continuous improvement</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Technologies</h2>
+            <div class="skills-content">
+                <!-- Strong / Proficient -->
+                <div class="skills-category">
+                    <h3>Strong / Proficient</h3>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>C++ </span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="75%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>React.js</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Node.js & Express.js</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="80%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>MongoDB</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="80%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>MySQL</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="tech-icons mt-3">
+                        <div class="tech-icon">
+                            <i class="fab fa-react"></i>
+                            <span>React</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-node"></i>
+                            <span>Node.js</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-server"></i>
+                            <span>Express</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-database"></i>
+                            <span>MongoDB</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-database"></i>
+                            <span>MySQL</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-code"></i>
+                            <span>C++</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Intermediate / Learning -->
+                <div class="skills-category">
+                    <h3>Intermediate / Learning</h3>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Python</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="75%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Rust</span>
+                            <span>55%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="55%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Go</span>
+                            <span>50%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="50%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>AI/ML Basics</span>
+                            <span>60%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="60%"></div>
+                        </div>
+                    </div>
+                    <!-- 
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Algorithmic Trading</span>
+                            <span>60%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="60%"></div>
+                        </div>
+                    </div> -->
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>API Integration (REST, Postman)</span>
+                            <span>70%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="70%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>PL/SQL</span>
+                            <span>65%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="65%"></div>
+                        </div>
+                    </div>
+
+                    <div class="tech-icons mt-3">
+                        <div class="tech-icon">
+                            <i class="fab fa-python"></i>
+                            <span>Python</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-gears"></i>
+                            <span>Rust</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-cogs"></i>
+                            <span>Go</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-plug"></i>
+                            <span>APIs</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-database"></i>
+                            <span>SQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exploring / Future Goals -->
+                <div class="skills-category">
+                    <h3>Exploring / Future Goals</h3>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>DevOps (Linux, Docker, CI/CD, Cloud)</span>
+                            <span>50%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="50%"></div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Blockchain & Web3</span>
+                            <span>40%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="40%"></div>
+                        </div>
+                    </div> -->
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Advanced ML / LLMs</span>
+                            <span>45%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="45%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Kotlin</span>
+                            <span>35%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="35%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>PostgreSQL (planning)</span>
+                            <span>30%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="30%"></div>
+                        </div>
+                    </div>
+
+                    <div class="tech-icons mt-3">
+                        <div class="tech-icon">
+                            <i class="fab fa-linux"></i>
+                            <span>Linux</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-docker"></i>
+                            <span>Docker</span>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-cloud"></i>
+                            <span>Cloud</span>
+                        </div>
+                        <!-- <div class="tech-icon">
+                            <i class="fas fa-link"></i>
+                            <span>Web3</span>
+                        </div> -->
+                        <div class="tech-icon">
+                            <i class="fas fa-database"></i>
+                            <span>PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="achievements">
+        <div class="container">
+            <h2 class="section-title">Achievements</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="placeholder-image">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Hackathon Winner — FinTech Theme</h3>
+                        <div class="project-actions mt-2">
+                            <a href="https://finance-tracking-for-hackathon.vercel.app/" target="_blank"
+                                rel="noopener noreferrer" class="btn btn-primary">
+                                <span>Visit</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="https://github.com/Hemantgithubpro/finance_tracking_innovate_2_O" target="_blank"
+                                rel="noopener noreferrer" class="btn btn-secondary">
+                                <span>GitHub</span>
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/posts/hemant-kumar-jha-79a922284_fintech-hackathonwinner-innovate2o-activity-7265400204248457217-TRYy"
+                                target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                                <span>LinkedIn</span>
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </div>
+                        <p>Won first place in a hackathon (FinTech theme) by building a real-time portfolio analytics
+                            and automated trading assistant with financial API integrations and an intuitive UI/UX.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">FinTech</span>
+                            <span class="tech-tag">NodeJS</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">ReactJS</span>
+                            <span class="tech-tag">NextJS</span>
+                            <span class="tech-tag">REST APIs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web Apps</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+                <button class="filter-btn" data-filter="desktop">Desktop</button>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <div class="placeholder-image">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>E-Commerce Platform</h3>
+                        <p>A full-stack e-commerce solution with user authentication, product management, and payment
+                            integration.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <div class="placeholder-image">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Task Management App</h3>
+                        <p>A collaborative task management application with real-time updates and team collaboration
+                            features.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Socket.io</span>
+                            <span class="tech-tag">CSS3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="mobile">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <div class="placeholder-image">
+                            <i class="fas fa-cloud-sun"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Weather Forecast App</h3>
+                        <p>A responsive weather application with location-based forecasts and interactive weather maps.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">API Integration</span>
+                            <span class="tech-tag">Geolocation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="desktop">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <div class="placeholder-image">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Data Visualization Tool</h3>
+                        <p>A desktop application for creating interactive data visualizations and generating insights
+                            from CSV files.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Tkinter</span>
+                            <span class="tech-tag">Pandas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <div class="placeholder-image">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Interactive Game Suite</h3>
+                        <p>A collection of browser-based games including puzzle games, arcade classics, and multiplayer
+                            challenges.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5 Canvas</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">WebGL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <div class="placeholder-image">
+                            <i class="fas fa-blog"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Personal Blog Platform</h3>
+                        <p>A custom blog platform with markdown support, comment system, and SEO optimization features.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Express.js</span>
+                            <span class="tech-tag">EJS</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profiles Section -->
+    <section id="profiles" class="profiles">
+        <div class="container">
+            <h2 class="section-title">Profiles</h2>
+            <div class="tech-icons">
+                <a class="tech-icon" href="https://codeforces.com/profile/hemantjha2005" target="_blank" rel="noopener"
+                    title="Hemantjha2005">
+                    <i class="fas fa-bolt" aria-hidden="true"></i>
+                    <span>Codeforces</span>
+                </a>
+                <a class="tech-icon" href="https://www.codechef.com/users/hemantcodechef" target="_blank" rel="noopener"
+                    title="Hemantcodechef">
+                    <i class="fas fa-utensils" aria-hidden="true"></i>
+                    <span>CodeChef</span>
+                </a>
+                <a class="tech-icon" href="https://leetcode.com/u/Hemantgithubpro/" target="_blank" rel="noopener"
+                    title="Leetcode">
+                    <i class="fas fa-code" aria-hidden="true"></i>
+                    <span>LeetCode</span>
+                </a>
+                <a class="tech-icon" href="https://www.hackerrank.com/profile/hemantjha2005" target="_blank"
+                    rel="noopener" title="Hemantjha2005">
+                    <i class="fas fa-laptop-code" aria-hidden="true"></i>
+                    <span>HackerRank</span>
+                </a>
+                <a class="tech-icon" href="https://atcoder.jp/users/hemantdev" target="_blank" rel="noopener"
+                    title="Hemantdev">
+                    <i class="fas fa-trophy" aria-hidden="true"></i>
+                    <span>AtCoder</span>
+                </a>
+                <a class="tech-icon" href="https://www.kaggle.com/hemantpro" target="_blank" rel="noopener"
+                    title="Hemantpro">
+                    <i class="fas fa-chart-line" aria-hidden="true"></i>
+                    <span>Kaggle</span>
+                </a>
+                <a class="tech-icon" href="https://github.com/hemantgithubpro/" target="_blank" rel="noopener">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <span>GitHub</span>
+                </a>
+                <a class="tech-icon" href="https://www.linkedin.com/in/hemant-kumar-jha-79a922284/" target="_blank"
+                    rel="noopener">
+                    <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a class="tech-icon" href="https://hkj.hashnode.dev/" target="_blank" rel="noopener"
+                    title="Hemantjha2005">
+                    <i class="fas fa-network-wired" aria-hidden="true"></i>
+                    <span>Hashnode</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Connect!</h3>
+                    <p>I'm always excited to discuss new opportunities, collaborate on projects, or just chat about
+                        technology. Feel free to reach out!</p>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <span>hemantjha2005@gmail.com</span>
+                        </div>
+                        <!-- <div class="contact-method">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div> -->
+                        <div class="contact-method">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Delhi, India</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/hemantgithubpro/" class="social-link"><i
+                                class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/hemant-kumar-jha-79a922284/" class="social-link"><i
+                                class="fab fa-linkedin"></i></a>
+                        <a href="https://x.com/hemant4x/" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required>
+                            <label for="name">Your Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">Your Email</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" required>
+                            <label for="subject">Subject</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <label for="message">Your Message</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Hemant Kumar Jha. Built with passion and lots of coffee ☕</p>
+                <p>Designed and developed from scratch using HTML, CSS, and JavaScript</p>
+            </div>
+        </div>
+    </footer> -->
+
+    <script src="script.js"></script>
+</body>
+
+</html>
