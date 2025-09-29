@@ -278,8 +278,27 @@ h1, h2, h3, h4, h5, h6 {
 .hero-description {
     font-size: 1.1rem;
     color: var(--text-secondary);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     line-height: 1.8;
+}
+
+.hero-email {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.hero-email a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.hero-email a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
 }
 
 .hero-buttons {

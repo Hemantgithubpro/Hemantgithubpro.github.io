@@ -73,40 +73,40 @@ function showUpdateNotification() {
     document.body.appendChild(notification);
 }
 
-function showInstallButton() {
-    const installButton = document.createElement('div');
-    installButton.id = 'install-button';
-    installButton.className = 'install-prompt';
-    installButton.innerHTML = `
-        <div class="install-content">
-            <span>Install this app for a better experience!</span>
-            <button id="install-btn" class="btn btn-primary btn-sm">Install</button>
-            <button onclick="this.parentElement.parentElement.remove()" class="btn btn-secondary btn-sm">×</button>
-        </div>
-    `;
+// function showInstallButton() {
+//     const installButton = document.createElement('div');
+//     installButton.id = 'install-button';
+//     installButton.className = 'install-prompt';
+//     installButton.innerHTML = `
+//         <div class="install-content">
+//             <span>Install this app for a better experience!</span>
+//             <button id="install-btn" class="btn btn-primary btn-sm">Install</button>
+//             <button onclick="this.parentElement.parentElement.remove()" class="btn btn-secondary btn-sm">×</button>
+//         </div>
+//     `;
     
-    document.body.appendChild(installButton);
+//     document.body.appendChild(installButton);
     
-    document.getElementById('install-btn').addEventListener('click', () => {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
-                }
-                deferredPrompt = null;
-                hideInstallButton();
-            });
-        }
-    });
-}
+//     document.getElementById('install-btn').addEventListener('click', () => {
+//         if (deferredPrompt) {
+//             deferredPrompt.prompt();
+//             deferredPrompt.userChoice.then((choiceResult) => {
+//                 if (choiceResult.outcome === 'accepted') {
+//                     console.log('User accepted the install prompt');
+//                 }
+//                 deferredPrompt = null;
+//                 hideInstallButton();
+//             });
+//         }
+//     });
+// }
 
-function hideInstallButton() {
-    const installButton = document.getElementById('install-button');
-    if (installButton) {
-        installButton.remove();
-    }
-}
+// function hideInstallButton() {
+//     const installButton = document.getElementById('install-button');
+//     if (installButton) {
+//         installButton.remove();
+//     }
+// }
 
 // Network status monitoring
 function initializeNetworkMonitoring() {
